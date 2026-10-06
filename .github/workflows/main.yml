@@ -24,6 +24,11 @@ jobs:
         run: |
           unzip -q Dimsum_Treats_Order_Pager_V7_Live_Phone_PC_Project.zip -d android_project
 
+      - name: Fix Java Import
+        run: |
+          FILE="android_project/DimsumTreatsOrderPagerAndroid/app/src/main/java/com/dimsumtreats/orderpager/MainActivity.java"
+          sed -i '/^package /a import java.util.Enumeration;' "$FILE"
+
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
